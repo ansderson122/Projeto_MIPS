@@ -1,0 +1,60 @@
+4101                                           # li r1,1
+4204	                                       # li r2,4
+c300                                           # lw r3,0   # sera o endereço do primeira matriz
+c404                                           # lw r4,4   # sera o endereço da segunda matriz
+ce08                                           # lw re,8   # onde vai ser colocardo o resultado
+4f10                                           # li r16 , 16
+
+4500                                           #li r5,0 # i
+252(Adicionar o endereço)                      #bge $r5, 4, end_i_loop # Se i >= 4, saia do loop
+4600                                           #li r6,0  # j = 0
+
+262(Adicionar o endereço) 		     #bge $r6, 4, end_j_loop # Se j >= 4, saia do loop
+4700                                           #li r7,0             # k = 0
+4c00                                    #li r12,0   #é usado para acumular a soma dos produtos
+
+272(Adicionar o endereço)                    #bge $r7, 4, end_k_loop # Se k >= 4, saia do loop
+
+# Calcula endereço e carrega primeiraMatrix[i][k]
+ba5f			 #mul $r10, $r5, $r16       # r10 = i * 16
+bd72                     #mul $r13, $r7,$r2         # r13 = k * 4
+9aad                     #add $r10, $r10, $313       # r10 = r10 + r13
+9aa3   			 #add $r0, $r10, $r3         # r10 = r10 + r3
+c80a                     #lw $r8,0($r10)
+
+# Calcula endereço e carrega segundaMatrix[k][j]
+ba7f			 #mul $r10, $r7, $r16       # r10 = k * 16
+bd62                     #mul $r13, $r6,$r2         # r13 = j * 4
+9aad                     #add $r10, $r10, $r13       # r10 = r10 + r13
+9aa4  			 #add $r0, $r10, $r4         # r10 = r10 + r4
+c90a                     #lw $r8,0($r10)
+
+
+
+bd89                    #mul $r13,$r8,$r9
+9ccd                    #add $r12,$r12,$r13
+
+9771                    #add $r7,$r7,$1               #  k = k + 1
+1(Adicionar o endereço)  #j para incio do k 
+#fim for K
+
+# Calcula endereço e carrega resultadoMatrix[i][j]
+ba7f			 #mul $r10, $r5, $r16       # r10 = i * 16
+bd62                     #mul $r13, $r6,$r2         # r13 = j * 4
+9aad                     #add $r10, $r10, $r13       # r10 = r10 + r13
+9aae  			 #add $r10, $r10, $re         # r10 = r10 + re
+30ca                     #sw $r12 ,$r10
+
+9661                     #add $r6,$r6,$r1           # j = j + 1
+1(Adicionar o endereço)  #j para incio do j
+#fim for j
+
+
+9551                      #add $r5,$r5,$r1          # i = i + 1
+1(Adicionar o endereço)  #j para incio do i
+#fim for i 
+
+
+
+
+
