@@ -1,8 +1,8 @@
 4101                                           # li r1,1
 4204	                                       # li r2,4
-c300                                           # lw r3,0   # sera o endereço do primeira matriz
-c404                                           # lw r4,4   # sera o endereço da segunda matriz
-ce08                                           # lw re,8   # onde vai ser colocardo o resultado
+4300                                           # li r3,0   # sera o endereço do primeira matriz
+4440                                           # li r4,64   # sera o endereço da segunda matriz
+4e80                                           # li re,128   # onde vai ser colocardo o resultado
 4f10                                           # li r16 , 16
 
 4500                                           #li r5,0 # i
@@ -39,7 +39,7 @@ bd89                    #mul $r13,$r8,$r9
 #fim for K
 
 # Calcula endereço e carrega resultadoMatrix[i][j]
-ba7f			 #mul $r10, $r5, $r16       # r10 = i * 16
+ba5f			 #mul $r10, $r5, $r16       # r10 = i * 16
 bd62                     #mul $r13, $r6,$r2         # r13 = j * 4
 9aad                     #add $r10, $r10, $r13       # r10 = r10 + r13
 9aae  			 #add $r10, $r10, $re         # r10 = r10 + re
@@ -53,8 +53,6 @@ bd62                     #mul $r13, $r6,$r2         # r13 = j * 4
 9551                      #add $r5,$r5,$r1          # i = i + 1
 1(Adicionar o endereço)  #j para incio do i
 #fim for i 
-
-
 
 
 
