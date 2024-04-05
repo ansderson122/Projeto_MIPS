@@ -56,8 +56,7 @@ Os seguintes comandos foram implementados:
 | 9aad     | add $r10, $r10, $r13 | Adiciona os endereços calculados |
 | 9aa4     | add $r10, $r10, $r4  | Adiciona o endereço da segunda matriz |
 | c90a     | lw $r8,0($r10)       | Carrega o valor da segunda matriz |
-|          |            |                                        |
-|          |            | **Cálculo da multiplicação e acumulação:** |
+|       **Cálculo da multiplicação e acumulação:** |
 | bd89     | mul $r13, $r8, $r9  | Multiplica os valores das matrizes |
 | 9ccd     | add $r12, $r12, $r13| Acumula o resultado da multiplicação |
 | 9771     | add $r7, $r7, $1    | Incrementa o contador k               |
